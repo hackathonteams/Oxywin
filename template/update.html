@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor's Update</title>
+    <link rel="stylesheet" href="css/update.css">
+</head>
+<body>
+    <h1>Vendor's Update</h1>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets5.lottiefiles.com/packages/lf20_xjhwr9wv.json"  background="transparent"  speed="1"  style="width: 300px; height: 500px; float: right; margin-right: 10%;"  loop  autoplay></lottie-player>
+    <form action="edit" method="POST">
+        {%csrf_token%}
+        <p><b>Storage:</b> </p><input type="number" name="storage" placeholder="Storage"><br>
+       <p><b> Availabe:</b></p> <input type="number" name="remain" placeholder="Available Oxygen"><br>
+       <p><b> Rate:</b></p> <input type="number" name="rate" placeholder="Rate"><br><br><br>
+        <input type="submit" class="btn">
+    </form>
+</body>
+</html>

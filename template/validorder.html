@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Orders</title>
+    <link rel="stylesheet" href="css/validorder.css">
+</head>
+<body>
+    {%if user.last_name == 'producer'%}
+    <div class="container">
+        <table>
+            <tr>
+                <th>Order ID</th>
+                <th>Hospital</th>
+                <th>Quantity</th>
+                <th>Action</th>
+            </tr>
+            {%for order in orders%}
+                {% if order.vendor_ID is 0 %}
+                    <tr>
+                        <td>{{order.id}}</td>
+                        <td>
+                            {%for h in hs%}
+                                {%if h.id == order.hospital_ID%}
+                                    {{h.name}}<br>{{h.address}}<br>{{h.state}}-{{h.pincode}}
+                                {%endif%}
+                            {%endfor%}
+                        </td>
+                        <td>{{order.quantity}}</td>
+                    </div>
+                        <td>
+                            <form method='POST' action='vaccept'>
+                                {%csrf_token%}
+                                <input type="hidden" name="order_id" value="{{order.id}}"/> <br><br>
+                                <input type="submit">
+                            </form>
+                        </td>
+                    </tr>
+                {%endif%}
+            {%endfor%}
+        </table>
+        
+    {%elif user.last_name == 'transporter'%}
+    <div class="container">
+    <table>
+        <tr>
+            <th>Order ID</th>
+            <th>Pickup Point</th>
+            <th>Drop Point</th>
+            <th>Quantity</th>
+            <th>Action</th>
+        </tr>
+        {%for order in orders%}
+            {% if order.vendor_ID != 0 and order.transporter_ID == 0 %}
+                <tr>
+                    <td>{{order.id}}</td>
+                    <td>
+                        {%for h in hs%}
+                            {%if h.id == order.hospital_ID%}
+                                {{h.name}}<br>{{h.address}}<br>{{h.state}}-{{h.pincode}}
+                            {%endif%}
+                        {%endfor%}
+                    </td>
+                    <td>
+                        {%for h in vs%}
+                            {%if h.id == order.hospital_ID%}
+                                {{h.name}}<br>{{h.address}}<br>{{h.state}}-{{h.pincode}}
+                            {%endif%}
+                        {%endfor%}
+                    </td>
+                    <td>{{order.quantity}}</td>
+                </div>
+                    <td>
+                        <form method='POST' action='taccept'>
+                            {%csrf_token%}
+                            <input type="hidden" name="order_id" value="{{order.id}}"/><br><br>
+                            <input type="submit">
+                        </form>
+                    </td>
+                </tr>
+            {%endif%}
+        {%endfor%}
+    </table>
+    {%endif%}
+    
+</body>
+</html>
