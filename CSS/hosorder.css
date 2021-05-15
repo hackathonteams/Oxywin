@@ -1,0 +1,102 @@
+body{
+    background-image: url("https://th.bing.com/th/id/OIP.cjaOrVsWrjcBT6L6l22pRgHaD6?w=305&h=180&c=7&o=5&dpr=1.09&pid=1.7");
+    background-size: cover;
+}
+.order{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    width: 600px;
+    height: 600px;
+    margin-left: 25%;
+    padding-left: 2%;
+    padding-bottom: 1.5%;
+    padding-top: 1%;
+    background-color: rgb(237, 244, 252);
+    border: white;
+    border-radius: 20px;
+    text-align: center;
+}
+h1{
+    color: purple;
+    text-shadow: 1px 1px black;
+    font-family: cursive;
+}
+p{
+    font-size: 20px;
+}
+input[type=number]{
+    width: 30%;
+   padding-top: 1%;
+   padding-bottom: 1%;
+   align-items: center;
+   border: none;
+   border-radius: 10px;
+   border: outset;
+}
+.wrapper{
+    position: fixed;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .link_wrapper{
+    position: relative;
+  }
+  
+  a{
+    display: block;
+    width: 250px;
+    height: 50px;
+    line-height: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    background: #333;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 3px solid #333;
+    transition: all .35s;
+  }
+  
+  .icon{
+    width: 50px;
+    height: 50px;
+    border: 3px solid transparent;
+    position: absolute;
+    transform: rotate(45deg);
+    right: 0;
+    top: 0;
+    z-index: -1;
+    transition: all .35s;
+  }
+  
+  .icon svg{
+    width: 30px;
+    position: absolute;
+    top: calc(50% - 15px);
+    left: calc(50% - 15px);
+    transform: rotate(-45deg);
+    fill: #2ecc71;
+    transition: all .35s;
+  }
+  
+  a:hover{
+    width: 200px;
+    border: 3px solid #2ecc71;
+    background: transparent;
+    color: #2ecc71;
+  }
+  
+  a:hover + .icon{
+    border: 3px solid #2ecc71;
+    right: -25%;
+  }
+  input[type=submit]{
+      background-color: transparent;
+      border: none;
+      color: lightblue;
+      text-shadow:1px 1px black;
+      font-size: 20px;
+      font-weight: bold;
+  }
