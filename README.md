@@ -9,7 +9,6 @@ All status can be seen from dashboard.
 
 ## Language Used:
   * HTML/CSS
-  * Js
   * Python
 
 ## Framework:
