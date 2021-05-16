@@ -12,5 +12,5 @@ All status can be seen from dashboard.
   * Js
   * Python
 
-## Frame-work:
+## Framework:
    * Django
