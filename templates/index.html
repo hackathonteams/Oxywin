@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{STATIC_URL}}static/index.css">
+  <title>Oxywin</title>
+</head>
+<body>
+  <nav>
+  <b>{% if user.is_authenticated %}
+  Hello, {{user.first_name}}</b>
+  <ul>
+    <li>
+  <a href="dashboard">Dashboard</a>
+    </li>
+    <li>
+  <a href="logout">Logout</a>
+  </li>
+  {% else %}
+  <ul>
+    <li>
+  <a href="register">Register</a><br>
+  </li>
+  <li>
+  <a href="login">Login</a><br>
+  </li>
+  {% endif %}
+  </ul>
+</nav>
+<h1 class="h">OXYWIN</h1>
+<p class="para">Oxywin plans to remove the <br> communication  gap.<br>
+  It is a website which will be <br> regularly updated by respective <br>authorities about the
+  oxygen <br> availability at there end there <br>requirements.
+   Like the hospital can <br> contain how much oxygen is<br>
+  available with them what is their <br> storage capacity  and how much time <br> can they currently
+   survive without  <br>getting oxygen.<br>
+  By this single portal it will be easier <br> for authorities to plan and <br>execute transport efficiently.</p>
+</body>
+</html>

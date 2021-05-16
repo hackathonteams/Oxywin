@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+    <link rel="stylesheet" href="{{STATICURL}}static/hosorder.css">
+</head>
+<body>
+  {% if user.is_authenticated %}
+  <ul>
+   <center> <li>
+    <a href="dashboard" class="a1">Dashboard</a>
+    <a href="logout" class="a1">Logout</a>
+    </li>
+    </center>
+    </ul>
+    <div class="order">
+        <center>
+    <h1>Order Placement Information</h1>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets9.lottiefiles.com/packages/lf20_tv9atb4y.json"  background="transparent"  speed="0.5"  style="width: 200px; height: 200px;"  loop  autoplay></lottie-player>
+    <form action="order" method="POST">
+        {%csrf_token%}
+        <p><b>Quantity required:</b></p>
+        <input type="number" name="quantity" placeholder="Quantity" required><br>
+        <p><b>Time:</b></p>
+        <input type="number" name="hours" placeholder="in Hours" required><br>
+        <div class="wrapper">
+            <div class="link_wrapper">
+              <a href="#"><input type="submit" value="Place Order"></a>
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
+                  <path d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z"/>
+                </svg>
+              </div>
+            </div>
+        
+    </form>
+    </center>
+    </div>
+    {%else%}
+    Please <a href="login">Login</a>
+    {%endif%}
+</body>
+</html>

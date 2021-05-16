@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{STATICURL}}static/avail_order.css">
+    <title>Available Orders</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        
+        <a href="dashboard">Dashboard</a>
+        <a href="logout">Logout</a>
+    <div class="container">
+    {% if user.last_name == "hospital" %}
+        <table>
+            <tr>
+                <th>Order ID</th>
+                <th>Vendor</th>
+                <th>Transporter</th>
+                <th>Quantity</th>
+                <th>Status</th>
+            </tr>
+            {%for order in orders%}
+                {%if order.hospital_ID is user.id%}
+                    <tr>
+                        <td>{{order.id}}</td>
+                        <td>
+                            {%if order.vendor_ID is not 0%}
+                                {%for v in vs%}
+                                    {%if v.id is order.vendor_ID%}
+                                        {{v.name}}<br>{{v.address}}<br>{{v.state}}-{{v.pincode}}
+                                    {%endif%}
+                                {%endfor%}
+                            {%else%}
+                                -
+                            {%endif%}
+                        </td>
+                        <td>
+                            {%if order.transporter_ID is not 0%}
+                                {%for t in ts%}
+                                    {%if t.id is order.transporter_ID%}
+                                        {{t.name}}<br>{{t.address}}<br>{{t.state}}-{{t.pincode}}
+                                    {%endif%}
+                                {%endfor%}
+                            {%else%}
+                                -
+                            {%endif%}
+                        </td>
+                        <td>{{order.quantity}}</td>
+                        <td>
+                            {%if order.status is 1%}
+                                Order Placed
+                            {%elif order.status is 2%}
+                                Order Accepted by Vendor
+                            {%elif order.status is 3%}
+                                Waiting for Pickup
+                            {%elif order.status is 4%}
+                                In transit
+                            {%else%}
+                                Delivered
+                            {%endif%}
+                        </td>
+                        
+                    </tr>
+                {%endif%}
+            {%endfor%}
+        </table>
+    {%elif user.last_name == "producer"%}
+        <table>
+            <tr>
+                <th>Order ID</th>
+                <th>Hospital</th>
+                <th>Transporter</th>
+                <th>Quantity</th>
+                <th>Status</th>
+            </tr>
+            {%for order in orders%}
+                {%if order.vendor_ID is user.id%}
+                    <tr>
+                        <td>{{order.id}}</td>
+                        <td>
+                            {%for h in hs%}
+                                {%if h.id is order.hospital_ID%}
+                                    {{h.name}}<br>{{h.address}}<br>{{h.state}}-{{h.pincode}}
+                                {%endif%}
+                            {%endfor%}
+                        </td>
+                        <td>
+                            {%if order.transporter_ID is not 0%}
+                                {%for t in ts%}
+                                    {%if t.id is order.transporter_ID%}
+                                        {{t.name}}<br>{{t.address}}<br>{{t.state}}-{{t.pincode}}
+                                    {%endif%}
+                                {%endfor%}
+                            {%else%}
+                                -
+                            {%endif%}
+                        </td>
+                        <td>{{order.quantity}}</td>
+                        <td>
+                            {%if order.status is 1%}
+                                Order Placed
+                            {%elif order.status is 2%}
+                                Order Accepted by Vendor
+                            {%elif order.status is 3%}
+                                Waiting for Pickup
+                            {%elif order.status is 4%}
+                                In transit
+                            {%else%}
+                                Delivered
+                            {%endif%}
+                        </td>
+                    </tr>
+                {%endif%}
+            {%endfor%}
+        </table>
+    {%else%}
+        <table>
+            <tr>
+                <th>Order ID</th>
+                <th>PickUp Point</th>
+                <th>Drop Point</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            {%for order in orders%}
+                {%if order.transporter_ID is user.id%}
+                    <tr>
+                        <td>{{order.id}}</td>
+                        <td>
+                            {%for v in vs%}
+                                {%if v.id is order.vendor_ID%}
+                                    {{v.name}}<br>{{v.address}}<br>{{v.state}}-{{v.pincode}}
+                                {%endif%}
+                            {%endfor%}
+                        </td>
+                        <td>
+                            {%for h in hs%}
+                                {%if h.id is order.hospital_ID%}
+                                    {{h.name}}<br>{{h.address}}<br>{{h.state}}-{{h.pincode}}
+                                {%endif%}
+                            {%endfor%}
+                        </td>
+                        <td>{{order.quantity}}</td>
+                        <td>
+                            {%if order.status is 1%}
+                                Order Placed
+                            {%elif order.status is 2%}
+                                Order Accepted by Vendor
+                            {%elif order.status is 3%}
+                                Waiting for Pickup
+                            {%elif order.status is 4%}
+                                In transit
+                            {%else%}
+                                Delivered
+                            {%endif%}
+                        </td>
+                        <td>
+                            {%if order.status is 3%}
+                                <form method='POST' action='pickup'>
+                                    {%csrf_token%}
+                                    <input type="hidden" name="order_id" value="{{order.id}}"/>
+                                    <input type="submit" value="Pick Up">
+                                </form>
+                            {%elif order.status is 4%}
+                                <form method='POST' action='drop'>
+                                    {%csrf_token%}
+                                    <input type="hidden" name="order_id" value="{{order.id}}"/>
+                                    <input type="submit" value="Delivered">
+                                </form>
+                            {%endif%}
+                        </td>
+                    </tr>
+                {%endif%}
+            {%endfor%}
+        </table>
+    {%endif%}
+    </div>
+    {% else %}
+  Please <a href="login">Login</a><br>
+
+  {% endif %}
+</body>
+</html>

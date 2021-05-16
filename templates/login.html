@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}static/login.css">
+    <title>Login</title>
+</head>
+<body>
+    <form action="login" method="POST">
+        {%csrf_token%}
+        <img src="https://image.freepik.com/free-vector/access-control-system-abstract-concept-illustration-security-system-authorize-entry-login-credentials-electronic-access-password-pass-phrase-pin-verification_335657-3373.jpg">
+        <h1>Login</h1>
+        <p><b>Username: </b></p>
+        <input type="text" name="username" placeholder="Username"><br>
+        <p><b>Password: </b></p>
+        <input type="password" name="pass" placeholder="Password"><br>
+        <input type="submit">
+    </form>
+    <div class="div">
+        {% for message in messages %}
+        {{message}}
+        {% endfor %}
+    </div>
+</body>
+</html>

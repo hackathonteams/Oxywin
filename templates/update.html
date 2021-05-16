@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{STATICURL}}static/update.css">
+    <title>Update</title>
+</head>
+<body>
+    <b>{% if user.is_authenticated %}
+        Hello, {{user.first_name}}</b>
+        <a href="dashboard">Dashboard</a>
+        <a href="logout">Logout</a>
+    <h1>Update Data</h1>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets5.lottiefiles.com/packages/lf20_xjhwr9wv.json"  background="transparent"  speed="1"  style="width: 300px; height: 500px; float: right; margin-right: 10%;"  loop  autoplay></lottie-player>
+    {%if user.last_name != "transporter"%}
+    <form action="edit" method="POST">
+        {%csrf_token%}
+        <p><b>Storage: </b></p><input type="number" name="storage" placeholder="Storage"><br>
+        <p><b>Availabe: </b></p><input type="number" name="remain" placeholder="Available Oxygen"><br>
+        <p><b>Rate: </b></p><input type="number" name="rate" placeholder="Rate"><br>
+        <input type="submit" class="btn">
+    </form>
+    {%else%}
+    <form action="edit" method="POST">
+        {%csrf_token%}
+        <p><b>Total Tankers: </b></p><input type="number" name="storage" placeholder="Total Tankers"><br>
+        <p><b>Availabe Tankers: </b></p><input type="number" name="remain" placeholder="Available Tankers"><br>
+        <p><b>Capacity: </b></p><input type="number" name="rate" placeholder="Capacity"><br>
+        <input type="submit" class="btn">
+    </form>
+    {%endif%}
+    {%else%}
+    Please <a href="login">Login</a>
+    {%endif%}
+</body>
+</html>

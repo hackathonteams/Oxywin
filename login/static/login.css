@@ -1,0 +1,66 @@
+body{
+    background-image: url("https://th.bing.com/th/id/Rd62daff9a865cc0827612767e41c08e2?rik=cMo757Cp%2f7Prhg&riu=http%3a%2f%2ffreedesignfile.com%2fupload%2f2015%2f11%2fWhite-light-dot-with-blurs-christmas-background-vector-03.jpg&ehk=K4NqJJzeo8KVV8EWQyY8CfcT9s40lhtWAlbw03aquHM%3d&risl=&pid=ImgRaw");
+    background-size: cover;
+  }
+  
+  img{
+    height: 50%;
+    width: 50%;
+    float: right;
+    margin-right: 8%;
+    margin-top: 4%;
+  }
+  h1{
+   text-align: left;
+   font-size: 50px;
+   font-family: cursive;
+   font-weight: bolder;
+   color: purple;
+   text-shadow: 3px 5px yellow;
+  }
+  form{
+    width: max-content;
+    height: max-content;
+    margin-top: 3.5%;
+    margin-left: 25%;
+    padding-left: 2%;
+    padding-bottom: 1.5%;
+    padding-top: 1%;
+    background-color: white;
+    box-shadow: rgba(236, 176, 211) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
+  select{
+      width: 30%;
+      padding: 16px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #f1f1f1;
+      align-items: center;
+  }
+  input[type=text], input[type=password]{
+     width: 30%;
+     padding-top: 1%;
+     padding-bottom: 1%;
+     align-items: center;
+     border: none;
+     border-radius: 10px;
+     border: outset;
+  }
+  input[type=submit]{
+    width: 30%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border: none;
+    border-radius: 10px;
+    border: outset;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 25px;
+    text-shadow: 1.5px 1px rgb(134, 60, 230);
+    background-color: rgb(235, 220, 228);
+    margin-left: 30%;
+  }
+  .div{
+    text-align: left;
+    color: red;
+  }

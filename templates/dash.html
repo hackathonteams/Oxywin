@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{STATICURL}}static/dash.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div>
+        <h1>Dashboard</h1>
+    <h3><b>{% if user.is_authenticated %}
+        Hello, {{user.first_name}}</b></h3>
+        <ul>
+            <li>
+        <a href="myorders">My Orders</a>
+            </li>
+        {%if user.last_name == 'hospital'%}
+        <li>
+            <a href="order">Place Order</a>
+        </li>  
+        {%else%}
+            <li><a href="avail_orders">Available Orders</a></li>
+        {%endif%}
+        <li><a href="logout">Logout</a><br></li></ul>
+        {% for t in h%}
+        <br><br>
+        <p class="para1">
+            <b> Name </b> : {{t.name}}<br>
+            <b>Address </b> : {{t.address}}<br>
+            <b>State </b>: {{t.state}} <br>
+            
+            <b>Pincode </b> : {{t.pincode}}
+            </p>
+            <p class="para2">
+            {%if user.last_name != 'transporter'%}<br>
+                <b>Storage </b> : {{t.storage}} Kg<br>
+                <b>Rate </b> : {{t.rate}} Kg/Hour<br>
+                <b>Currently Available </b> : {{t.available}} Kg<br>
+            {%else%}
+                <b>Total Tankers </b> : {{t.total_tanker}}<br>
+                <b>Available Tankers </b> : {{t.avail_tanker}}<br>
+                <b>Capacity </b> : {{t.capacity}} Kg/tanker<br>
+            {%endif%}
+        </p>
+        {%endfor%}
+        <a href="edit"><input type="button" value="Edit" class="btn1"></a>
+    {% else %}
+    <a href="login"><input type="button" value="Click here to Login" class="btn2"></a>
+    {% endif %}
+</div>
+</body>
+</html>
